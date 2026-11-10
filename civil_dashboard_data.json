@@ -1,0 +1,539 @@
+{
+  "metadata": {
+    "title": "Civil Construction Project Management & Site Analytics",
+    "developer": "Intikhab Ahmad Shah",
+    "student_profile": "BS Student / Civil Project Analytics & Machine Learning",
+    "version": "1.0.0",
+    "generated_at": "2026-11-10T22:21:58.061123",
+    "total_projects": 2500,
+    "total_packages": 2800,
+    "total_logs": 3200,
+    "total_contract_value_pkr": 1234678025394.8,
+    "total_budget_pkr": 111072080025.35,
+    "total_concrete_m3": 198599.81,
+    "total_steel_tons": 37628.28,
+    "avg_labor_count": 87.631875,
+    "avg_machine_hours": 11.473187500000002,
+    "avg_completion_pct": 51.64035714285714
+  },
+  "questions": {
+    "q1_status_overview": [
+      {
+        "ProjectStatus": "Active",
+        "ProjectCount": 1217,
+        "TotalValue_Billion_PKR": 609.9
+      },
+      {
+        "ProjectStatus": "Completed",
+        "ProjectCount": 669,
+        "TotalValue_Billion_PKR": 317.48
+      },
+      {
+        "ProjectStatus": "On Hold",
+        "ProjectCount": 614,
+        "TotalValue_Billion_PKR": 307.3
+      }
+    ],
+    "q2_top_projects": [
+      {
+        "ProjectName": "Civil-PRJ-0319",
+        "ProjectType": "Solar Power Infrastructure",
+        "LocationCity": "Karachi",
+        "ProjectStatus": "Active",
+        "Value_Billion_PKR": 0.95
+      },
+      {
+        "ProjectName": "Civil-PRJ-2289",
+        "ProjectType": "Commercial High-Rise",
+        "LocationCity": "Faisalabad",
+        "ProjectStatus": "Active",
+        "Value_Billion_PKR": 0.95
+      },
+      {
+        "ProjectName": "Civil-PRJ-0141",
+        "ProjectType": "Solar Power Infrastructure",
+        "LocationCity": "Rawalpindi",
+        "ProjectStatus": "On Hold",
+        "Value_Billion_PKR": 0.95
+      },
+      {
+        "ProjectName": "Civil-PRJ-1062",
+        "ProjectType": "Cement Plant Silo",
+        "LocationCity": "Mianwali",
+        "ProjectStatus": "Active",
+        "Value_Billion_PKR": 0.95
+      },
+      {
+        "ProjectName": "Civil-PRJ-1977",
+        "ProjectType": "Industrial Warehouse",
+        "LocationCity": "Karachi",
+        "ProjectStatus": "Active",
+        "Value_Billion_PKR": 0.95
+      }
+    ],
+    "q3_active_by_city": [
+      {
+        "LocationCity": "Lahore",
+        "ActiveProjectsCount": 154,
+        "TotalActiveValue_Billion_PKR": 75.56
+      },
+      {
+        "LocationCity": "Multan",
+        "ActiveProjectsCount": 152,
+        "TotalActiveValue_Billion_PKR": 76.89
+      },
+      {
+        "LocationCity": "Peshawar",
+        "ActiveProjectsCount": 143,
+        "TotalActiveValue_Billion_PKR": 70.91
+      },
+      {
+        "LocationCity": "Rawalpindi",
+        "ActiveProjectsCount": 140,
+        "TotalActiveValue_Billion_PKR": 69.95
+      },
+      {
+        "LocationCity": "Quetta",
+        "ActiveProjectsCount": 138,
+        "TotalActiveValue_Billion_PKR": 66.72
+      },
+      {
+        "LocationCity": "Faisalabad",
+        "ActiveProjectsCount": 137,
+        "TotalActiveValue_Billion_PKR": 74.59
+      },
+      {
+        "LocationCity": "Karachi",
+        "ActiveProjectsCount": 121,
+        "TotalActiveValue_Billion_PKR": 60.42
+      },
+      {
+        "LocationCity": "Islamabad",
+        "ActiveProjectsCount": 118,
+        "TotalActiveValue_Billion_PKR": 58.02
+      },
+      {
+        "LocationCity": "Mianwali",
+        "ActiveProjectsCount": 114,
+        "TotalActiveValue_Billion_PKR": 56.83
+      }
+    ],
+    "q4_materials_summary": {
+      "TotalConcreteM3": 198599.8,
+      "AvgDailyConcreteM3": 62.1,
+      "TotalSteelTons": 37628.3,
+      "AvgDailySteelTons": 11.8,
+      "MaxConcreteDailyM3": 179.9,
+      "MaxSteelDailyTons": 32.0
+    },
+    "q5_safety_risk": [
+      {
+        "SafetyRiskLevel": "Critical",
+        "PackageCount": 718,
+        "AvgCompletionPct": 52.5,
+        "Budget_Billion_PKR": 28.36
+      },
+      {
+        "SafetyRiskLevel": "Low",
+        "PackageCount": 709,
+        "AvgCompletionPct": 50.5,
+        "Budget_Billion_PKR": 28.17
+      },
+      {
+        "SafetyRiskLevel": "High",
+        "PackageCount": 690,
+        "AvgCompletionPct": 53.1,
+        "Budget_Billion_PKR": 27.49
+      },
+      {
+        "SafetyRiskLevel": "Medium",
+        "PackageCount": 683,
+        "AvgCompletionPct": 50.4,
+        "Budget_Billion_PKR": 27.04
+      }
+    ],
+    "q6_top_subcontractors": [
+      {
+        "AssignedSubcontractor": "FWO Infrastructure",
+        "TotalPackages": 492,
+        "TotalBudget_Million_PKR": 19963.14,
+        "AvgCompletionPct": 49.4
+      },
+      {
+        "AssignedSubcontractor": "Izhar Construction",
+        "TotalPackages": 465,
+        "TotalBudget_Million_PKR": 18963.97,
+        "AvgCompletionPct": 51.9
+      },
+      {
+        "AssignedSubcontractor": "Descon Engineering",
+        "TotalPackages": 486,
+        "TotalBudget_Million_PKR": 18220.71,
+        "AvgCompletionPct": 51.4
+      },
+      {
+        "AssignedSubcontractor": "Habib Construction Services",
+        "TotalPackages": 443,
+        "TotalBudget_Million_PKR": 18195.29,
+        "AvgCompletionPct": 52.0
+      },
+      {
+        "AssignedSubcontractor": "Zahir Khan & Brothers",
+        "TotalPackages": 451,
+        "TotalBudget_Million_PKR": 18051.44,
+        "AvgCompletionPct": 52.9
+      }
+    ],
+    "q7_weather_impact": [
+      {
+        "WeatherCondition": "Light Rain",
+        "LogCount": 558,
+        "AvgMachineHours": 11.6,
+        "AvgLaborCount": 88.3,
+        "AvgConcreteM3": 58.7
+      },
+      {
+        "WeatherCondition": "Extreme Heat",
+        "LogCount": 551,
+        "AvgMachineHours": 11.4,
+        "AvgLaborCount": 86.9,
+        "AvgConcreteM3": 62.8
+      },
+      {
+        "WeatherCondition": "Overcast",
+        "LogCount": 543,
+        "AvgMachineHours": 11.7,
+        "AvgLaborCount": 85.1,
+        "AvgConcreteM3": 60.7
+      },
+      {
+        "WeatherCondition": "Dust Storm",
+        "LogCount": 521,
+        "AvgMachineHours": 11.5,
+        "AvgLaborCount": 87.5,
+        "AvgConcreteM3": 64.2
+      },
+      {
+        "WeatherCondition": "Heavy Rain",
+        "LogCount": 520,
+        "AvgMachineHours": 11.4,
+        "AvgLaborCount": 88.7,
+        "AvgConcreteM3": 63.5
+      },
+      {
+        "WeatherCondition": "Clear / Sunny",
+        "LogCount": 507,
+        "AvgMachineHours": 11.2,
+        "AvgLaborCount": 89.4,
+        "AvgConcreteM3": 62.7
+      }
+    ],
+    "q8_project_types": [
+      {
+        "ProjectType": "Prestressed Concrete Bridge",
+        "ProjectCount": 336,
+        "TotalValue_Billion_PKR": 171.54,
+        "AvgValue_Million_PKR": 510.52
+      },
+      {
+        "ProjectType": "Water Treatment Plant",
+        "ProjectCount": 333,
+        "TotalValue_Billion_PKR": 164.62,
+        "AvgValue_Million_PKR": 494.34
+      },
+      {
+        "ProjectType": "Metro Rail Flyover",
+        "ProjectCount": 317,
+        "TotalValue_Billion_PKR": 162.88,
+        "AvgValue_Million_PKR": 513.82
+      },
+      {
+        "ProjectType": "Solar Power Infrastructure",
+        "ProjectCount": 320,
+        "TotalValue_Billion_PKR": 159.11,
+        "AvgValue_Million_PKR": 497.21
+      },
+      {
+        "ProjectType": "Highway Expansion",
+        "ProjectCount": 314,
+        "TotalValue_Billion_PKR": 147.14,
+        "AvgValue_Million_PKR": 468.6
+      },
+      {
+        "ProjectType": "Industrial Warehouse",
+        "ProjectCount": 299,
+        "TotalValue_Billion_PKR": 144.35,
+        "AvgValue_Million_PKR": 482.77
+      },
+      {
+        "ProjectType": "Commercial High-Rise",
+        "ProjectCount": 296,
+        "TotalValue_Billion_PKR": 142.66,
+        "AvgValue_Million_PKR": 481.98
+      },
+      {
+        "ProjectType": "Cement Plant Silo",
+        "ProjectCount": 285,
+        "TotalValue_Billion_PKR": 142.38,
+        "AvgValue_Million_PKR": 499.59
+      }
+    ],
+    "q9_lagging_packages": [
+      {
+        "PackageName": "HVAC Ducting & Plant Room Civil Work",
+        "AssignedSubcontractor": "Habib Construction Services",
+        "ProjectName": "Civil-PRJ-1725",
+        "LocationCity": "Faisalabad",
+        "CompletionPercentage": 9,
+        "Budget_Million_PKR": 74.38
+      },
+      {
+        "PackageName": "Shear Wall Reinforcement & Shuttering",
+        "AssignedSubcontractor": "FWO Infrastructure",
+        "ProjectName": "Civil-PRJ-2213",
+        "LocationCity": "Islamabad",
+        "CompletionPercentage": 9,
+        "Budget_Million_PKR": 74.34
+      },
+      {
+        "PackageName": "Basement Waterproofing & Tanking",
+        "AssignedSubcontractor": "FWO Infrastructure",
+        "ProjectName": "Civil-PRJ-0151",
+        "LocationCity": "Rawalpindi",
+        "CompletionPercentage": 16,
+        "Budget_Million_PKR": 74.31
+      },
+      {
+        "PackageName": "Structural Steel Truss Assembly",
+        "AssignedSubcontractor": "EchoWest Construction",
+        "ProjectName": "Civil-PRJ-1026",
+        "LocationCity": "Karachi",
+        "CompletionPercentage": 7,
+        "Budget_Million_PKR": 73.34
+      },
+      {
+        "PackageName": "Shear Wall Reinforcement & Shuttering",
+        "AssignedSubcontractor": "Habib Construction Services",
+        "ProjectName": "Civil-PRJ-0492",
+        "LocationCity": "Quetta",
+        "CompletionPercentage": 16,
+        "Budget_Million_PKR": 72.54
+      },
+      {
+        "PackageName": "Precast Girder Launching & Erection",
+        "AssignedSubcontractor": "FWO Infrastructure",
+        "ProjectName": "Civil-PRJ-0417",
+        "LocationCity": "Peshawar",
+        "CompletionPercentage": 14,
+        "Budget_Million_PKR": 72.24
+      },
+      {
+        "PackageName": "Raft Foundation RCC Pouring",
+        "AssignedSubcontractor": "Izhar Construction",
+        "ProjectName": "Civil-PRJ-1017",
+        "LocationCity": "Quetta",
+        "CompletionPercentage": 13,
+        "Budget_Million_PKR": 72.14
+      },
+      {
+        "PackageName": "Precast Girder Launching & Erection",
+        "AssignedSubcontractor": "Zahir Khan & Brothers",
+        "ProjectName": "Civil-PRJ-1143",
+        "LocationCity": "Karachi",
+        "CompletionPercentage": 11,
+        "Budget_Million_PKR": 71.8
+      }
+    ],
+    "q10_inspections": [
+      {
+        "SiteInspectionStatus": "Passed",
+        "InspectionCount": 1901,
+        "AvgLabor": 88.3,
+        "AvgConcrete": 61.9
+      },
+      {
+        "SiteInspectionStatus": "Rectification Needed",
+        "InspectionCount": 658,
+        "AvgLabor": 88.3,
+        "AvgConcrete": 62.6
+      },
+      {
+        "SiteInspectionStatus": "Rejected",
+        "InspectionCount": 641,
+        "AvgLabor": 84.9,
+        "AvgConcrete": 61.9
+      }
+    ]
+  },
+  "clusters": [
+    {
+      "cluster_id": 0,
+      "name": "Light Preparation & Site Setup",
+      "count": 1155,
+      "pct": 36.1,
+      "color": "#38bdf8",
+      "avg_labor": 88.9,
+      "avg_machine_hours": 11.5,
+      "avg_concrete_m3": 21.6,
+      "avg_steel_tons": 3.3
+    },
+    {
+      "cluster_id": 1,
+      "name": "Structural Rebar Fixing & Steel Assembly",
+      "count": 989,
+      "pct": 30.9,
+      "color": "#f59e0b",
+      "avg_labor": 87.3,
+      "avg_machine_hours": 11.3,
+      "avg_concrete_m3": 31.8,
+      "avg_steel_tons": 23.5
+    },
+    {
+      "cluster_id": 2,
+      "name": "Heavy Foundation & Mass Concrete Pouring",
+      "count": 1056,
+      "pct": 33.0,
+      "color": "#10b981",
+      "avg_labor": 86.6,
+      "avg_machine_hours": 11.6,
+      "avg_concrete_m3": 134.6,
+      "avg_steel_tons": 10.0
+    }
+  ],
+  "classification": {
+    "model_name": "Tuned Random Forest Classifier Pipeline",
+    "accuracy": 0.96,
+    "cross_val_accuracy": 0.9719,
+    "n_estimators": 50,
+    "cv_folds": 5,
+    "classes": [
+      {
+        "name": "Cluster 0: Light Prep",
+        "precision": 0.95,
+        "recall": 0.98,
+        "f1": 0.97,
+        "support": 230
+      },
+      {
+        "name": "Cluster 1: Rebar Heavy",
+        "precision": 0.98,
+        "recall": 0.94,
+        "f1": 0.96,
+        "support": 199
+      },
+      {
+        "name": "Cluster 2: Mass Pouring",
+        "precision": 0.96,
+        "recall": 0.96,
+        "f1": 0.96,
+        "support": 211
+      }
+    ],
+    "confusion_matrix": [
+      [
+        226,
+        1,
+        3
+      ],
+      [
+        5,
+        188,
+        6
+      ],
+      [
+        7,
+        2,
+        202
+      ]
+    ],
+    "cm_labels": [
+      "Light Prep (0)",
+      "Rebar Heavy (1)",
+      "Mass Pouring (2)"
+    ]
+  },
+  "feature_importance": [
+    {
+      "feature": "Concrete Poured (m\u00b3)",
+      "importance": 0.384
+    },
+    {
+      "feature": "Steel Consumed (Tons)",
+      "importance": 0.292
+    },
+    {
+      "feature": "Machinery Operating Hours",
+      "importance": 0.145
+    },
+    {
+      "feature": "Daily Labor Count",
+      "importance": 0.089
+    },
+    {
+      "feature": "Completion Percentage",
+      "importance": 0.038
+    },
+    {
+      "feature": "Allocated Budget PKR",
+      "importance": 0.024
+    },
+    {
+      "feature": "Contract Value PKR",
+      "importance": 0.018
+    },
+    {
+      "feature": "Estimated Concrete Vol",
+      "importance": 0.01
+    }
+  ],
+  "allowed_categories": {
+    "cities": [
+      "Faisalabad",
+      "Islamabad",
+      "Karachi",
+      "Lahore",
+      "Mianwali",
+      "Multan",
+      "Peshawar",
+      "Quetta",
+      "Rawalpindi"
+    ],
+    "project_types": [
+      "Cement Plant Silo",
+      "Commercial High-Rise",
+      "Highway Expansion",
+      "Industrial Warehouse",
+      "Metro Rail Flyover",
+      "Prestressed Concrete Bridge",
+      "Solar Power Infrastructure",
+      "Water Treatment Plant"
+    ],
+    "weather_conditions": [
+      "Clear / Sunny",
+      "Dust Storm",
+      "Extreme Heat",
+      "Heavy Rain",
+      "Light Rain",
+      "Overcast"
+    ],
+    "inspection_statuses": [
+      "Passed",
+      "Rectification Needed",
+      "Rejected"
+    ],
+    "subcontractors": [
+      "Descon Engineering",
+      "EchoWest Construction",
+      "FWO Infrastructure",
+      "Habib Construction Services",
+      "Izhar Construction",
+      "Zahir Khan & Brothers"
+    ],
+    "safety_levels": [
+      "Critical",
+      "High",
+      "Low",
+      "Medium"
+    ]
+  }
+}

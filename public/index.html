@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Civil Construction Project Management & Site Analytics Dashboard</title>
+  
+  <!-- Google Fonts: Poppins (Uniform System Font Everywhere) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Local High-Speed FontAwesome Icons -->
+  <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css">
+  
+  <!-- Visualization & Animation Libraries -->
+  <script src="vendor/chart.umd.min.js"></script>
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top VIP Navigation Bar -->
+  <nav class="vip-navbar">
+    <div class="nav-brand">
+      <div class="brand-hex">
+        <i class="fa-solid fa-helmet-safety"></i>
+      </div>
+      <div class="brand-titles">
+        <span class="brand-title">CIVIL <span class="text-brand-gold">CONSTRUCTION ANALYTICS</span></span>
+        <span class="brand-sub">Project Management & Site Operations Dashboard</span>
+      </div>
+    </div>
+
+    <div class="nav-links">
+      <a href="#kpis" class="nav-item active"><i class="fa-solid fa-chart-pie"></i> Executive Overview</a>
+      <a href="#analytics" class="nav-item"><i class="fa-solid fa-layer-group"></i> 10 Questions</a>
+      <a href="#clustering" class="nav-item"><i class="fa-solid fa-diagram-project"></i> Clustering & AI</a>
+      <a href="#simulator" class="nav-item highlight-btn"><i class="fa-solid fa-sliders"></i> Site Simulator</a>
+      <a href="#explorer" class="nav-item"><i class="fa-solid fa-database"></i> Database Explorer</a>
+      <a href="#modelcard" class="nav-item"><i class="fa-solid fa-id-card"></i> Model Card</a>
+    </div>
+
+    <div class="nav-author-badge">
+      <div class="author-dot pulse-online"></div>
+      <div>
+        <div class="author-name">Intikhab Ahmad Shah</div>
+        <div class="author-id">ID: TRN-2026-000059</div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Trainee & Course Credentials Strip (From Notebook Cell 0) -->
+  <aside class="trainee-strip">
+    <div class="strip-item">
+      <i class="fa-solid fa-graduation-cap"></i>
+      <span><strong>Bootcamp:</strong> PSEB - Tech Destination - Bootcamp</span>
+    </div>
+    <div class="strip-item">
+      <i class="fa-solid fa-chalkboard-user"></i>
+      <span><strong>Trainer:</strong> Respected Ma'am Mahnoor Salman</span>
+    </div>
+    <div class="strip-item">
+      <i class="fa-solid fa-location-dot"></i>
+      <span><strong>Venue:</strong> Iqra University - IU, Islamabad</span>
+    </div>
+    <div class="strip-item">
+      <i class="fa-solid fa-id-card"></i>
+      <span><strong>Trainee ID:</strong> TRN-2026-000059</span>
+    </div>
+  </aside>
+
+  <!-- Main Dashboard Container -->
+  <main class="dashboard-container">
+
+    <!-- Hero Header Section -->
+    <header class="hero-section">
+      <div class="hero-content">
+        <div class="hero-pill-badge">
+          <i class="fa-solid fa-building"></i> Multi-Table Relational Analysis: Projects • Work Packages • Daily Site Logs
+        </div>
+        <h1 class="hero-headline">
+          Civil Infrastructure <span class="text-brand-gold">Project Management</span> & Site Analytics
+        </h1>
+        <p class="hero-description">
+          A clean analytics system connecting <strong>2,500 construction projects</strong>, <strong>2,800 work packages</strong>, and <strong>3,200 daily site logs</strong> across major Pakistani cities. Includes unsupervised clustering (K-Means & DBSCAN) to find natural work patterns, and a <strong>96% accurate AI classifier</strong> to automatically identify daily site activities.
+        </p>
+        <div class="hero-cta-group">
+          <a href="#simulator" class="btn btn-primary"><i class="fa-solid fa-sliders"></i> Open Site Simulator</a>
+          <a href="#analytics" class="btn btn-secondary"><i class="fa-solid fa-chart-column"></i> View 10 Questions</a>
+          <a href="#explorer" class="btn btn-outline"><i class="fa-solid fa-table"></i> Browse 3,200 Logs</a>
+        </div>
+      </div>
+
+      <div class="hero-status-card">
+        <div class="status-card-header">
+          <span><i class="fa-solid fa-database"></i> Project Overview</span>
+          <span class="badge badge-success"><i class="fa-solid fa-circle-check"></i> System Ready</span>
+        </div>
+        <div class="status-metrics">
+          <div class="sm-item">
+            <span class="sm-label">SQLite Database</span>
+            <span class="sm-val text-brand-blue">civil_project_management.db</span>
+          </div>
+          <div class="sm-item">
+            <span class="sm-label">Total Contract Value</span>
+            <span class="sm-val text-brand-gold">PKR 3.42 Trillion</span>
+          </div>
+          <div class="sm-item">
+            <span class="sm-label">Trained Model Accuracy</span>
+            <span class="sm-val text-brand-emerald">96.0% (Tuned Random Forest)</span>
+          </div>
+          <div class="sm-item">
+            <span class="sm-label">Site Activity Clusters</span>
+            <span class="sm-val text-brand-blue">3 Distinct Operational Phases</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Global Cross-Filter Toolbar -->
+    <section class="filter-bar-section" id="filters">
+      <div class="filter-bar-header">
+        <div class="filter-title">
+          <i class="fa-solid fa-filter"></i> Filter Construction Site Data
+        </div>
+        <div class="filter-records-count">
+          Showing <span id="filtered-count" class="highlight-count">3,200</span> of <span id="total-count">3,200</span> Site Logs
+        </div>
+      </div>
+
+      <div class="filters-grid">
+        <div class="filter-group">
+          <label><i class="fa-solid fa-location-dot"></i> City</label>
+          <select id="filter-city" class="custom-select">
+            <option value="All">All Cities (Pakistan)</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label><i class="fa-solid fa-building"></i> Project Type</label>
+          <select id="filter-type" class="custom-select">
+            <option value="All">All Project Types</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label><i class="fa-solid fa-cloud-sun"></i> Weather Condition</label>
+          <select id="filter-weather" class="custom-select">
+            <option value="All">All Weather Types</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label><i class="fa-solid fa-clipboard-check"></i> Site Inspection</label>
+          <select id="filter-inspection" class="custom-select">
+            <option value="All">All Inspection Statuses</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label><i class="fa-solid fa-hard-hat"></i> Subcontractor</label>
+          <select id="filter-subcontractor" class="custom-select">
+            <option value="All">All Subcontractors</option>
+          </select>
+        </div>
+
+        <div class="filter-group filter-actions">
+          <button id="btn-reset-filters" class="btn btn-reset">
+            <i class="fa-solid fa-rotate-left"></i> Reset Filters
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Master Executive KPI Cards Bar -->
+    <section class="kpi-section" id="kpis">
+      <div class="kpi-grid">
+        <!-- KPI 1: Total Projects -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Total Projects</span>
+            <div class="kpi-icon-box bg-gold"><i class="fa-solid fa-building-flag"></i></div>
+          </div>
+          <div class="kpi-num" id="kpi-projects">2,500</div>
+          <div class="kpi-subtext">Active, Completed & On Hold</div>
+          <div class="kpi-trend positive"><i class="fa-solid fa-arrow-trend-up"></i> Across 9 Pakistani Cities</div>
+        </div>
+
+        <!-- KPI 2: Total Contract Value -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Total Contract Value</span>
+            <div class="kpi-icon-box bg-blue"><i class="fa-solid fa-money-bill-trend-up"></i></div>
+          </div>
+          <div class="kpi-num" id="kpi-contract-value">3.42T</div>
+          <div class="kpi-subtext">Total Value (PKR)</div>
+          <div class="kpi-trend positive"><i class="fa-solid fa-coins"></i> Avg PKR 1.37B per Project</div>
+        </div>
+
+        <!-- KPI 3: Work Packages -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Work Packages</span>
+            <div class="kpi-icon-box bg-cyan"><i class="fa-solid fa-boxes-stacked"></i></div>
+          </div>
+          <div class="kpi-num" id="kpi-packages">2,800</div>
+          <div class="kpi-subtext">Allocated Budget: PKR 111B</div>
+          <div class="kpi-trend neutral"><i class="fa-solid fa-chart-simple"></i> Avg 51.5% Completed</div>
+        </div>
+
+        <!-- KPI 4: Daily Site Logs -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Daily Site Logs</span>
+            <div class="kpi-icon-box bg-purple"><i class="fa-solid fa-clipboard-list"></i></div>
+          </div>
+          <div class="kpi-num" id="kpi-logs">3,200</div>
+          <div class="kpi-subtext">Verified Field Reports</div>
+          <div class="kpi-trend positive"><i class="fa-solid fa-person-digging"></i> Avg 101 Workers per Site</div>
+        </div>
+
+        <!-- KPI 5: Concrete Volume Poured -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Concrete Poured</span>
+            <div class="kpi-icon-box bg-emerald"><i class="fa-solid fa-truck-droplet"></i></div>
+          </div>
+          <div class="kpi-num" id="kpi-concrete">1.78M</div>
+          <div class="kpi-subtext">Cubic Meters (m³) Poured</div>
+          <div class="kpi-trend positive"><i class="fa-solid fa-cubes"></i> Avg 556.7 m³ per Shift</div>
+        </div>
+
+        <!-- KPI 6: ML Prediction Accuracy -->
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span class="kpi-title">Model Accuracy</span>
+            <div class="kpi-icon-box bg-amber"><i class="fa-solid fa-brain"></i></div>
+          </div>
+          <div class="kpi-num" id="kpi-accuracy">96.0%</div>
+          <div class="kpi-subtext">Tuned Random Forest Pipeline</div>
+          <div class="kpi-trend positive"><i class="fa-solid fa-circle-check"></i> 5-Fold CV: 97.2%</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visual Analytics Suite: The 10 Business Questions -->
+    <section class="vip-section" id="analytics">
+      <div class="section-header">
+        <div>
+          <span class="section-tag">Analytical Questions & Answers</span>
+          <h2 class="section-title">The 10 Business Questions with Visual Insights</h2>
+        </div>
+        
+        <!-- Category Tab Switcher -->
+        <div class="tab-switcher">
+          <button class="tab-btn active" data-tab="tab-portfolio"><i class="fa-solid fa-briefcase"></i> Portfolio & Financials</button>
+          <button class="tab-btn" data-tab="tab-operations"><i class="fa-solid fa-gears"></i> Materials & Operations</button>
+          <button class="tab-btn" data-tab="tab-safety"><i class="fa-solid fa-triangle-exclamation"></i> Safety & Inspections</button>
+        </div>
+      </div>
+
+      <!-- TAB 1: Portfolio & Financials (Q1, Q2, Q3, Q8) -->
+      <div class="tab-content active" id="tab-portfolio">
+        <div class="analytics-grid">
+          <!-- Q1: Project Status Overview -->
+          <div class="card-white">
+            <div class="card-header">
+              <div>
+                <span class="q-badge">Question 1</span>
+                <h3 class="card-heading">Project Status Overview</h3>
+              </div>
+              <span class="card-meta">2,500 Total Projects</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-q1"></canvas>
+            </div>
+            <div class="card-findings">
+              <strong>Simple Takeaway:</strong> Active projects make up about half of all projects with PKR 1.7 Trillion in ongoing work. Around 30% are Completed and 20% are On Hold.
+            </div>
+          </div>
+
+          <!-- Q2: Top 5 Projects by Contract Value -->
+          <div class="card-white">
+            <div class="card-header">
+              <div>
+                <span class="q-badge">Question 2</span>
+                <h3 class="card-heading">Top 5 Projects by Contract Value</h3>
+              </div>
+              <span class="card-meta">In Billion PKR</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-q2"></canvas>
+            </div>
+            <div class="card-findings">
+              <strong>Simple Takeaway:</strong> Big infrastructure projects like concrete bridges and commercial towers have the highest contract values, around PKR 2.4 Billion to 2.5 Billion each.
+            </div>
+          </div>
+
+          <!-- Q3: Construction Hubs by City -->
+          <div class="card-white">
+            <div class="card-header">
+              <div>
+                <span class="q-badge">Question 3</span>
+                <h3 class="card-heading">Active Construction Projects by City</h3>
+              </div>
+              <span class="card-meta">Active Projects Count</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-q3"></canvas>
+            </div>
+            <div class="card-findings">
+              <strong>Simple Takeaway:</strong> Karachi and Lahore have the most active construction sites, followed closely by Islamabad, Rawalpindi, and Multan.
+            </div>
+          </div>
+
+          <!-- Q8: Revenue by Project Type -->
+          <div class="card-white">
+            <div class="card-header">
+              <div>
+                <span class="q-badge">Question 8</span>
+                <h3 class="card-heading">Total Money by Project Type</h3>
+              </div>
+              <span class="card-meta">In Billion PKR</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-q8"></canvas>
+            </div>
+            <div class="card-findings">
+              <strong>Simple Takeaway:</strong> Commercial High-Rise towers and Metro Rail Flyovers bring in the highest total revenue (more than PKR 450 Billion each).
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: Materials & Operations (Q4, Q6, Q7) -->
+      <div class="tab-content" id="tab-operations">
+        <div class="analytics-grid">
+          <!-- Q6: Top 5 Subcontractors (DUAL AXIS WITH PROPER SCALING TO 25,000M) -->
+          <div class="card-white card-span-2">
+            <div class="card-header">
+              <div>
+                <span class="q-badge">Question 6</span>
+                <h3 class="card-heading">Top 5 Subcontractors by Budget Allocation & Completion %</h3>
+              </div>
+              <span class="card-meta">Scale: 0 to 25,000M PKR (Comfortable Headspace)</span>
+            </div>
+            <div class="chart-container chart-lg">
+              <canvas id="chart-q6"></canvas>
+            </div>
+            <div class="card-findings">
+              <strong>Proper Scaling Applied:</strong> <strong>FWO Infrastructure</strong> has the largest budget at <strong>19,963 Million PKR</strong> (~20 Billion PKR) across 492 packages (49.4% complete). <strong>Izhar Construction</strong> is second with <strong>18,964 Million PKR</strong> (51.9% complete). The chart scale reaches 25,000M PKR so bars never touch or exceed the top.
+            </div>
+          </div>
+
+          <!-- Q4: Materials Consumption Summary -->
+          <div class="card-white">
+            <div class="card-header">
+              <div>
+                <span class="q-badge">Question 4</span>
+                <h3 class="card-heading">Concrete & Steel Rebar Consumption</h3>
+              </div>
+              <span class="card-meta">Total Site Materials</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-q4"></canvas>
+            </div>
+            <div class="card-findings">
+              <strong>Simple Takeaway:</strong> Total concrete poured is 1.78 Million m³ with a daily average of 556.7 m³. Steel reinforcement fixing averages around 18.4 tons per shift.
+            </div>
+          </div>
+
+          <!-- Q7: Weather Impact on Site Operations -->
+          <div class="card-white">
+            <div class="card-header">
+              <div>
+                <span class="q-badge">Question 7</span>
+                <h3 class="card-heading">Weather Impact on Labor & Machinery Hours</h3>
+              </div>
+              <span class="card-meta">Daily Field Impact</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-q7"></canvas>
+            </div>
+            <div class="card-findings">
+              <strong>Simple Takeaway:</strong> Heavy Rain and Extreme Heat reduce machine operating hours by about 28% and cause lower daily worker attendance on site.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: Safety & Inspections (Q5, Q9, Q10) -->
+      <div class="tab-content" id="tab-safety">
+        <div class="analytics-grid">
+          <!-- Q5: Safety Risk Levels -->
+          <div class="card-white">
+            <div class="card-header">
+              <div>
+                <span class="q-badge">Question 5</span>
+                <h3 class="card-heading">Work Packages by Safety Risk Level</h3>
+              </div>
+              <span class="card-meta">Risk Categories</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-q5"></canvas>
+            </div>
+            <div class="card-findings">
+              <strong>Simple Takeaway:</strong> About 24% of packages are marked as 'Critical' risk. These need extra safety officers, daily scaffolding checks, and strict PPE enforcement.
+            </div>
+          </div>
+
+          <!-- Q10: Inspection Pass / Fail Rates -->
+          <div class="card-white">
+            <div class="card-header">
+              <div>
+                <span class="q-badge">Question 10</span>
+                <h3 class="card-heading">Quality & Safety Inspection Status</h3>
+              </div>
+              <span class="card-meta">3,200 Site Inspections</span>
+            </div>
+            <div class="chart-container">
+              <canvas id="chart-q10"></canvas>
+            </div>
+            <div class="card-findings">
+              <strong>Simple Takeaway:</strong> About 73% of inspections passed on the first check. 14% needed minor fixes, and 7% failed and had to be redone.
+            </div>
+          </div>
+
+          <!-- Q9: Critical Lagging Packages Table Card -->
+          <div class="card-white card-span-2">
+            <div class="card-header">
+              <div>
+                <span class="q-badge">Question 9</span>
+                <h3 class="card-heading">Critical Risk Packages with Less than 25% Progress</h3>
+              </div>
+              <span class="card-meta">High Priority Site Audits</span>
+            </div>
+            <div class="table-responsive">
+              <table class="custom-table" id="table-q9">
+                <thead>
+                  <tr>
+                    <th>Package Name</th>
+                    <th>Subcontractor</th>
+                    <th>Project</th>
+                    <th>City</th>
+                    <th>Completion %</th>
+                    <th>Budget (M PKR)</th>
+                    <th>Risk Status</th>
+                  </tr>
+                </thead>
+                <tbody id="q9-table-body">
+                  <!-- Populated via JavaScript -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Machine Learning & Clustering Lab -->
+    <section class="vip-section" id="clustering">
+      <div class="section-header">
+        <div>
+          <span class="section-tag">Machine Learning Results</span>
+          <h2 class="section-title">Site Activity Clustering & AI Model Performance</h2>
+        </div>
+        <div class="badge badge-success">
+          <i class="fa-solid fa-circle-check"></i> K-Means (K=3) + Tuned Random Forest
+        </div>
+      </div>
+
+      <!-- 3 Operational Cluster Cards -->
+      <div class="cluster-cards-grid">
+        <!-- Cluster 0 -->
+        <div class="cluster-card c-blue">
+          <div class="cluster-header">
+            <span class="cluster-id-tag">Cluster 0</span>
+            <span class="cluster-count-badge" id="c0-count">1,147 Logs (35.8%)</span>
+          </div>
+          <h4 class="cluster-name">Light Preparation & Site Setup</h4>
+          <p class="cluster-desc">Shuttering, formwork alignment, and site grading. Minimal concrete poured and low steel fixing.</p>
+          <div class="cluster-stats-mini">
+            <div><span>Avg Concrete:</span> <strong>21.2 m³</strong></div>
+            <div><span>Avg Steel:</span> <strong>3.1 Tons</strong></div>
+            <div><span>Avg Labor:</span> <strong>48 Workers</strong></div>
+            <div><span>Avg Machine:</span> <strong>4.2 Hrs</strong></div>
+          </div>
+        </div>
+
+        <!-- Cluster 1 -->
+        <div class="cluster-card c-gold">
+          <div class="cluster-header">
+            <span class="cluster-id-tag">Cluster 1</span>
+            <span class="cluster-count-badge" id="c1-count">997 Logs (31.2%)</span>
+          </div>
+          <h4 class="cluster-name">Structural Rebar & Steel Fixing</h4>
+          <p class="cluster-desc">Heavy steel fixing, rebar cage tying, and crane lifts. Very high steel consumption with moderate concrete.</p>
+          <div class="cluster-stats-mini">
+            <div><span>Avg Concrete:</span> <strong>32.8 m³</strong></div>
+            <div><span>Avg Steel:</span> <strong>23.5 Tons</strong></div>
+            <div><span>Avg Labor:</span> <strong>112 Workers</strong></div>
+            <div><span>Avg Machine:</span> <strong>8.6 Hrs</strong></div>
+          </div>
+        </div>
+
+        <!-- Cluster 2 -->
+        <div class="cluster-card c-emerald">
+          <div class="cluster-header">
+            <span class="cluster-id-tag">Cluster 2</span>
+            <span class="cluster-count-badge" id="c2-count">1,056 Logs (33.0%)</span>
+          </div>
+          <h4 class="cluster-name">Heavy Foundation & Mass Pouring</h4>
+          <p class="cluster-desc">Mass concrete pours, transit mixer coordination, concrete pump runs, and foundation raft casting.</p>
+          <div class="cluster-stats-mini">
+            <div><span>Avg Concrete:</span> <strong>134.6 m³</strong></div>
+            <div><span>Avg Steel:</span> <strong>7.4 Tons</strong></div>
+            <div><span>Avg Labor:</span> <strong>146 Workers</strong></div>
+            <div><span>Avg Machine:</span> <strong>15.2 Hrs</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ML Metrics, Confusion Matrix & Feature Importance Grid -->
+      <div class="ml-eval-grid">
+        <!-- Confusion Matrix Visualizer -->
+        <div class="card-white">
+          <div class="card-header">
+            <div>
+              <span class="q-badge">Evaluation Matrix</span>
+              <h3 class="card-heading">Classification Confusion Matrix</h3>
+            </div>
+            <span class="card-meta">Test Set (640 Samples)</span>
+          </div>
+          
+          <div class="cm-table-box">
+            <div class="cm-axis-y">Actual (True) Label</div>
+            <div class="cm-table-wrapper">
+              <div class="cm-axis-x">Predicted Label by Model</div>
+              <table class="cm-table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Light Prep (0)</th>
+                    <th>Rebar Heavy (1)</th>
+                    <th>Mass Pour (2)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="cm-row-hdr">Light Prep (0)</td>
+                    <td class="cm-cell hit"><strong>226</strong></td>
+                    <td class="cm-cell miss">1</td>
+                    <td class="cm-cell miss">3</td>
+                  </tr>
+                  <tr>
+                    <td class="cm-row-hdr">Rebar Heavy (1)</td>
+                    <td class="cm-cell miss">5</td>
+                    <td class="cm-cell hit"><strong>188</strong></td>
+                    <td class="cm-cell miss">6</td>
+                  </tr>
+                  <tr>
+                    <td class="cm-row-hdr">Mass Pour (2)</td>
+                    <td class="cm-cell miss">7</td>
+                    <td class="cm-cell miss">2</td>
+                    <td class="cm-cell hit"><strong>202</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="cm-summary">
+            <div class="metric-chip"><span class="m-lbl">Overall Accuracy:</span> <span class="m-val text-brand-emerald">96.0%</span></div>
+            <div class="metric-chip"><span class="m-lbl">Light Prep F1:</span> <span class="m-val">0.97</span></div>
+            <div class="metric-chip"><span class="m-lbl">Rebar Heavy F1:</span> <span class="m-val">0.96</span></div>
+            <div class="metric-chip"><span class="m-lbl">Mass Pour F1:</span> <span class="m-val">0.96</span></div>
+          </div>
+        </div>
+
+        <!-- Feature Importance Chart -->
+        <div class="card-white">
+          <div class="card-header">
+            <div>
+              <span class="q-badge">Important Features</span>
+              <h3 class="card-heading">Top Predictors of Daily Site Activity</h3>
+            </div>
+            <span class="card-meta">Model Feature Weights</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart-features"></canvas>
+          </div>
+          <div class="card-findings">
+            <strong>Key Insight:</strong> <strong>Concrete Poured (38.4%)</strong> and <strong>Steel Consumed (29.2%)</strong> are the two most important factors the model uses to decide the work phase.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Real-Time Site Phase Simulator -->
+    <section class="vip-section" id="simulator">
+      <div class="section-header">
+        <div>
+          <span class="section-tag">Interactive Tool</span>
+          <h2 class="section-title">Real-Time Daily Site Activity Simulator & Predictor</h2>
+        </div>
+        <div class="badge badge-success">
+          <i class="fa-solid fa-bolt"></i> Live AI Model Prediction
+        </div>
+      </div>
+
+      <div class="simulator-panel card-white">
+        <!-- Quick Preset Buttons -->
+        <div class="sim-presets-bar">
+          <span class="preset-label"><i class="fa-solid fa-wand-magic-sparkles"></i> Load Quick Shift Presets:</span>
+          <button class="btn-preset active" data-preset="mass-pour"><i class="fa-solid fa-truck-droplet"></i> Mass Pouring Shift</button>
+          <button class="btn-preset" data-preset="rebar-fix"><i class="fa-solid fa-bars-staggered"></i> Rebar Fixing Shift</button>
+          <button class="btn-preset" data-preset="light-prep"><i class="fa-solid fa-tools"></i> Site Setup / Curing Shift</button>
+        </div>
+
+        <div class="sim-split-layout">
+          <!-- Left: Input Controls -->
+          <div class="sim-inputs-column">
+            <div class="sim-group">
+              <div class="sim-label-row">
+                <label for="sim-concrete"><i class="fa-solid fa-cube text-brand-emerald"></i> Concrete Poured (m³)</label>
+                <span class="sim-val-display" id="disp-concrete">145 m³</span>
+              </div>
+              <input type="range" id="sim-concrete" min="0" max="300" step="5" value="145" class="custom-range">
+            </div>
+
+            <div class="sim-group">
+              <div class="sim-label-row">
+                <label for="sim-steel"><i class="fa-solid fa-bars-staggered text-brand-gold"></i> Steel Consumed (Tons)</label>
+                <span class="sim-val-display" id="disp-steel">6.5 Tons</span>
+              </div>
+              <input type="range" id="sim-steel" min="0" max="50" step="0.5" value="6.5" class="custom-range">
+            </div>
+
+            <div class="sim-group">
+              <div class="sim-label-row">
+                <label for="sim-labor"><i class="fa-solid fa-people-group text-brand-blue"></i> Daily Labor Count (Workers)</label>
+                <span class="sim-val-display" id="disp-labor">95 Workers</span>
+              </div>
+              <input type="range" id="sim-labor" min="5" max="300" step="5" value="95" class="custom-range">
+            </div>
+
+            <div class="sim-group">
+              <div class="sim-label-row">
+                <label for="sim-machine"><i class="fa-solid fa-stopwatch text-brand-cyan"></i> Machinery Operating Hours</label>
+                <span class="sim-val-display" id="disp-machine">16.0 Hrs</span>
+              </div>
+              <input type="range" id="sim-machine" min="0" max="24" step="0.5" value="16.0" class="custom-range">
+            </div>
+
+            <div class="sim-group">
+              <div class="sim-label-row">
+                <label for="sim-completion"><i class="fa-solid fa-percent text-brand-purple"></i> Work Package Completion %</label>
+                <span class="sim-val-display" id="disp-completion">42.5 %</span>
+              </div>
+              <input type="range" id="sim-completion" min="0" max="100" step="2.5" value="42.5" class="custom-range">
+            </div>
+
+            <!-- Categorical dropdown selections -->
+            <div class="sim-select-row">
+              <div class="filter-group">
+                <label>Project Type</label>
+                <select id="sim-type" class="custom-select">
+                  <option value="Commercial High-Rise">Commercial High-Rise</option>
+                  <option value="Prestressed Concrete Bridge">Prestressed Concrete Bridge</option>
+                  <option value="Metro Rail Flyover">Metro Rail Flyover</option>
+                  <option value="Highway Expansion">Highway Expansion</option>
+                  <option value="Water Treatment Plant">Water Treatment Plant</option>
+                  <option value="Cement Plant Silo">Cement Plant Silo</option>
+                  <option value="Industrial Warehouse">Industrial Warehouse</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <label>City Location</label>
+                <select id="sim-city" class="custom-select">
+                  <option value="Lahore">Lahore</option>
+                  <option value="Karachi">Karachi</option>
+                  <option value="Islamabad">Islamabad</option>
+                  <option value="Rawalpindi">Rawalpindi</option>
+                  <option value="Multan">Multan</option>
+                  <option value="Peshawar">Peshawar</option>
+                  <option value="Quetta">Quetta</option>
+                  <option value="Faisalabad">Faisalabad</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <label>Weather Condition</label>
+                <select id="sim-weather" class="custom-select">
+                  <option value="Clear / Sunny">Clear / Sunny</option>
+                  <option value="Overcast">Overcast</option>
+                  <option value="Light Rain">Light Rain</option>
+                  <option value="Heavy Rain">Heavy Rain</option>
+                  <option value="Dust Storm">Dust Storm</option>
+                  <option value="Extreme Heat">Extreme Heat</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <label>Subcontractor</label>
+                <select id="sim-subcontractor" class="custom-select">
+                  <option value="Descon Engineering">Descon Engineering</option>
+                  <option value="FWO Infrastructure">FWO Infrastructure</option>
+                  <option value="Izhar Construction">Izhar Construction</option>
+                  <option value="Habib Construction Services">Habib Construction Services</option>
+                  <option value="Zahir Khan & Brothers">Zahir Khan & Brothers</option>
+                </select>
+              </div>
+            </div>
+
+            <button id="btn-run-simulation" class="btn btn-primary btn-block">
+              <i class="fa-solid fa-play"></i> Run AI Phase Prediction
+            </button>
+          </div>
+
+          <!-- Right: Live Result Display -->
+          <div class="sim-result-column">
+            <div class="sim-result-card" id="sim-result-card">
+              <div class="res-header">
+                <span class="res-tag"><i class="fa-solid fa-microchip"></i> Prediction Result</span>
+                <span class="badge badge-success" id="res-validation-status"><i class="fa-solid fa-check"></i> Valid Input</span>
+              </div>
+
+              <div class="res-cluster-badge" id="res-badge">
+                <span class="res-phase-label" id="res-phase-name">Heavy Foundation & Mass Concrete Pouring</span>
+                <span class="res-cluster-pill" id="res-cluster-pill">Cluster 2</span>
+              </div>
+
+              <!-- Confidence Gauge -->
+              <div class="confidence-box">
+                <div class="confidence-label-row">
+                  <span>Model Confidence</span>
+                  <strong class="text-brand-emerald" id="res-confidence">84.0%</strong>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" id="res-confidence-bar" style="width: 84%;"></div>
+                </div>
+              </div>
+
+              <!-- Class Probability Distribution -->
+              <div class="prob-distribution">
+                <div class="prob-item">
+                  <div class="prob-lbl"><span>Light Prep (0)</span> <span id="prob-0">10.0%</span></div>
+                  <div class="progress-bar-bg sm"><div class="progress-bar-fill bg-blue" id="prob-bar-0" style="width: 10%;"></div></div>
+                </div>
+                <div class="prob-item">
+                  <div class="prob-lbl"><span>Rebar Heavy (1)</span> <span id="prob-1">6.0%</span></div>
+                  <div class="progress-bar-bg sm"><div class="progress-bar-fill bg-gold" id="prob-bar-1" style="width: 6%;"></div></div>
+                </div>
+                <div class="prob-item">
+                  <div class="prob-lbl"><span>Mass Pouring (2)</span> <span id="prob-2">84.0%</span></div>
+                  <div class="progress-bar-bg sm"><div class="progress-bar-fill bg-emerald" id="prob-bar-2" style="width: 84%;"></div></div>
+                </div>
+              </div>
+
+              <!-- Tailored Civil Engineering Recommendations -->
+              <div class="recs-box">
+                <h5 class="recs-title"><i class="fa-solid fa-clipboard-check"></i> Site Action Plan:</h5>
+                <ul class="recs-list" id="res-recs-list">
+                  <li>Mass Concrete Pouring in Progress: Coordinate transit mixer trucks with concrete batching plant to avoid cold joints.</li>
+                  <li>Deploy backup concrete vibrators and maintain continuous slump test sampling at the transit pump.</li>
+                  <li>Monitor machinery operating temperature and schedule post-pour water ponding curing for tomorrow's morning shift.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Master SQLite Database Explorer Table -->
+    <section class="vip-section" id="explorer">
+      <div class="section-header">
+        <div>
+          <span class="section-tag">Relational Database Records</span>
+          <h2 class="section-title">Master SQLite Site Records Explorer</h2>
+        </div>
+        <div class="table-actions">
+          <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="table-search" placeholder="Search project, package, subcontractor, city..." autocomplete="off">
+          </div>
+          <button id="btn-export-csv" class="btn btn-secondary"><i class="fa-solid fa-file-csv"></i> Export Filtered CSV</button>
+        </div>
+      </div>
+
+      <div class="card-white">
+        <div class="table-responsive">
+          <table class="custom-table" id="main-records-table">
+            <thead>
+              <tr>
+                <th>Log ID</th>
+                <th>Date</th>
+                <th>Project Name</th>
+                <th>Type</th>
+                <th>City</th>
+                <th>Subcontractor</th>
+                <th>Labor</th>
+                <th>Machine Hrs</th>
+                <th>Concrete (m³)</th>
+                <th>Steel (Tons)</th>
+                <th>Inspection</th>
+                <th>Cluster Phase</th>
+              </tr>
+            </thead>
+            <tbody id="logs-table-body">
+              <!-- Dynamically populated via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="pagination-bar">
+          <div class="page-info">
+            Showing <span id="page-start">1</span> to <span id="page-end">15</span> of <span id="table-total-records">3,200</span> records
+          </div>
+          <div class="page-controls">
+            <button id="btn-prev-page" class="btn btn-page" disabled><i class="fa-solid fa-chevron-left"></i> Previous</button>
+            <span class="page-current" id="page-indicator">Page 1 of 214</span>
+            <button id="btn-next-page" class="btn btn-page">Next <i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formal Model Card Section -->
+    <section class="vip-section" id="modelcard">
+      <div class="section-header">
+        <div>
+          <span class="section-tag">Model Information</span>
+          <h2 class="section-title">Machine Learning Model Card & Student Credentials</h2>
+        </div>
+        <div class="badge badge-success">
+          <i class="fa-solid fa-certificate"></i> Version 1.0 (November 2026)
+        </div>
+      </div>
+
+      <div class="card-white">
+        <div class="model-spec-table-wrapper">
+          <table class="model-spec-table">
+            <tbody>
+              <tr>
+                <td class="spec-label"><i class="fa-solid fa-user"></i> Trainee Name</td>
+                <td class="spec-value"><strong>Intikhab Ahmad Shah</strong></td>
+              </tr>
+              <tr>
+                <td class="spec-label"><i class="fa-solid fa-id-badge"></i> Trainee ID</td>
+                <td class="spec-value"><strong>TRN-2026-000059</strong></td>
+              </tr>
+              <tr>
+                <td class="spec-label"><i class="fa-solid fa-chalkboard-user"></i> Trainer</td>
+                <td class="spec-value"><strong>Respected Ma'am Mahnoor Salman</strong></td>
+              </tr>
+              <tr>
+                <td class="spec-label"><i class="fa-solid fa-graduation-cap"></i> Bootcamp & Venue</td>
+                <td class="spec-value"><strong>PSEB - Tech Destination - Bootcamp</strong> | <strong>Iqra University - IU, Islamabad</strong></td>
+              </tr>
+              <tr>
+                <td class="spec-label"><i class="fa-solid fa-tag"></i> Model Name</td>
+                <td class="spec-value"><strong>Civil Site Activity Phase Classifier</strong></td>
+              </tr>
+              <tr>
+                <td class="spec-label"><i class="fa-solid fa-cubes-stacked"></i> Method & Algorithms</td>
+                <td class="spec-value">Unsupervised K-Means clustering ($K=3$) chosen using the Elbow method, followed by a tuned <strong>Random Forest Classifier</strong> pipeline with <code>StandardScaler</code> for numeric columns and <code>OneHotEncoder</code> for categorical columns.</td>
+              </tr>
+              <tr>
+                <td class="spec-label"><i class="fa-solid fa-database"></i> Training Dataset</td>
+                <td class="spec-value">3,200 multi-table records joined via SQLite relational keys from <code>daily_site_logs</code> (3,200), <code>work_packages</code> (2,800), and <code>projects</code> (2,500) covering 9 Pakistani cities.</td>
+              </tr>
+              <tr>
+                <td class="spec-label"><i class="fa-solid fa-bullseye"></i> Evaluation Metrics</td>
+                <td class="spec-value">Holdout Test Set (640 samples): <strong>96.0% Overall Accuracy</strong>, <strong>97.2% 5-Fold Cross-Validation Accuracy</strong>, Light Prep F1: 0.97, Rebar Heavy F1: 0.96, Mass Pouring F1: 0.96.</td>
+              </tr>
+              <tr>
+                <td class="spec-label"><i class="fa-solid fa-floppy-disk"></i> Saved Pipeline</td>
+                <td class="spec-value">Exported as <code>civil_site_classifier_pipeline.joblib</code> with 100% verified identical reload predictions.</td>
+              </tr>
+              <tr>
+                <td class="spec-label"><i class="fa-solid fa-shield-halved"></i> Safety & Operational Risks</td>
+                <td class="spec-value">Model predictions help in planning and resource tracking. They must never replace the physical site inspections of certified civil engineers.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- VIP Executive Footer (Light Theme) -->
+  <footer class="vip-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="brand-hex sm">
+          <i class="fa-solid fa-helmet-safety"></i>
+        </div>
+        <div>
+          <div class="footer-title">Civil Construction Project Management & Site Analytics</div>
+          <div class="footer-sub">PSEB Tech Destination Bootcamp • Iqra University, Islamabad</div>
+        </div>
+      </div>
+
+      <div class="footer-attribution">
+        Developed by <strong>Intikhab Ahmad Shah</strong> (TRN-2026-000059)<br>
+        Trainer: <strong>Respected Ma'am Mahnoor Salman</strong> | Venue: <strong>Iqra University - IU, Islamabad</strong>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

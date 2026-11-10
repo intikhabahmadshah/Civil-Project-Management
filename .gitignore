@@ -1,0 +1,31 @@
+# Node Dependencies
+node_modules/
+package-lock.json
+npm-debug.log*
+
+# Temporary scripts & Scratch
+scratch/
+*.log
+*.zip
+Push_To_GitHub.bat
+
+# Redundant duplicate subfolders & backup notebooks
+FinalProject_IntikhabAhmadShah/
+SQLite_Task_*/
+CC_PM_2.ipynb
+Run_MERN_Dashboard.bat
+
+# Python Artifacts & Caches
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# Vercel Build Artifacts
+.vercel/
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

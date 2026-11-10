@@ -1,0 +1,31 @@
+{
+  "name": "civil-project-management-dashboard",
+  "version": "1.0.0",
+  "description": "Enterprise Civil Construction Project Management & Site Analytics Dashboard powered by MERN, ThreeJS, GSAP, and Vite.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "civil-engineering",
+    "construction-analytics",
+    "threejs",
+    "gsap",
+    "vite",
+    "mern",
+    "machine-learning"
+  ],
+  "author": "Intikhab Ahmad Shah",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "vite": "^5.2.0"
+  }
+}
